@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        .green {
+            background-color: green;
+        }
+
+        .red {
+            background-color: red;
+        }
+
+        .red {
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+    <div id="app">
+        <p class="green" v-if="show">You can see me.</p>
+        <!-- You can chain conditions using v-else-if -->
+        <!-- <p class="green" v-else-if="show">You can see me.</p> -->
+        <p class="red" v-else>You can't see me.</p>
+        <button @click="show = !show">{{ show ? 'Dont Show' : 'Show' }}</button>
+    </div>
+</body>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            show: false
+        },
+        methods: {
+        },
+    })
+</script>
+
+</html>

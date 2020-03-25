@@ -1,0 +1,105 @@
+<html>
+
+<head>
+	<style>
+		.css-box {
+			height: 25px;
+			background-color: grey;
+			width: 50%;
+		}
+
+		.green {
+			background-color: green;
+		}
+	</style>
+</head>
+
+<body>
+	<!-- Put this in the HTML section in JSFiddle! -->
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+	<div id="app">
+		<button v-on:click="increment(2, $event)">Increment</button>
+		<button v-on:click="counter--">Decrement</button>
+		<p>{{ counter }}</p>
+		<p>{{ counter > 10 ? 'Greater than 10' : 'Less than 10' }}</p>
+		<p v-on:mousemove="updateCoOrdinates">Co-ordinate: {{x}} / {{y}} -
+			<span v-on:click.prevent="" v-on:mousemove.stop="">DEAD SPOT</span>
+		</p>
+
+		<input type='text' v-on:keyup.enter="alertMe" />
+
+		<h3>Two Way data Binding</h3>
+		<input type='text' v-model="name" />
+		<p>{{ name }}</p>
+
+		<h3>Reactivity</h3>
+		<button v-on:click="reactiveCount++">Increment</button>
+
+		<!-- v-on: === @ -->
+		<!-- v-bind: === : -->
+		<button @click="reactiveCount--">Decrement</button>
+		<p>Reactive Count : {{reactiveCount}}</p>
+		<p>Reactive Result : {{resultOfCount()}} | {{output}}</p>
+
+
+		<h3>Dynamic CSS</h3>
+		<div class="css-box" :class="{green: reactiveCount > 5 }">
+
+		</div>
+	</div>
+
+
+	<script>
+
+		new Vue({
+			el: '#app',
+			data: {
+				name: 'Shre',
+				counter: 0,
+				x: 0,
+				y: 0,
+
+				reactiveCount: 0,
+				result: ''
+			},
+			methods: {
+				increment: function (step, event) {
+					console.log({ event });
+					this.counter += step;
+				},
+				updateCoOrdinates: function (e) {
+					this.x = e.clientX;
+					this.y = e.clientY
+				},
+				alertMe: function (e) {
+					alert(`Alert: ${e.target.value}`)
+				},
+				resultOfCount: function () {
+					console.log('resultOfCount method will run on each render');
+					return this.reactiveCount > 5 ? 'Greater then 5' : 'Less than 5'
+				}
+			},
+			// To compute a property based on changes of other data properties.
+			// Can run synchronous code only.
+			computed: {
+				output: function () {
+					console.log('output will be computed only when counter property changes | DEPENDING PROPERTY CHANGES.');
+					return this.reactiveCount > 5 ? 'Greater then 5' : 'Less than 5'
+				}
+			},
+			// To watch a data property for changes and Run a function.
+			// Does not return any data.
+			// Can run asynchronous and synchronous code.
+			watch: {
+				reactiveCount: function (value) {
+					setTimeout(function () {
+						console.log('value of counter : ', value);
+					}, 2000)
+				}
+			}
+		})
+	</script>
+</body>
+
+</html>

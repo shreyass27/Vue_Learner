@@ -21,20 +21,83 @@
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
 
     <div id="app">
+
+        <pre>
+        if | else-if | else 
+        v-if | v-else-if | v-else work together forming group with nearest possible directives
+        The completely attaches or detaches html elements into the DOM
+        </pre>
         <p class="green" v-if="show">You can see me.</p>
         <!-- You can chain conditions using v-else-if -->
         <!-- <p class="green" v-else-if="show">You can see me.</p> -->
         <p class="red" v-else>You can't see me.</p>
         <button @click="show = !show">{{ show ? 'Dont Show' : 'Show' }}</button>
+
+        <p>v-show works using CSS display: none | wont remove element from DOM.</p>
+        <h4 v-show="show">Show this message.</h4>
+
+
+
+
+
+
+        <h3>v-for | For Loop</h3>
+        <ol>
+            <li v-for="todo in todos">
+                {{ todo.text }}
+            </li>
+        </ol>
+        <ul>
+            <li v-for="(ingredient, i) in ingredients">{{i + 1}}) {{ingredient}}</li>
+        </ul>
+
+        <h4>V-for supply key for Vue to internally identify each element in loop. Efficient looping</h4>
+        <ol>
+            <li v-for="person in persons" :key="person.name + person.age" :style="{backgroundColor: person.color}">
+                {{person.name}} is aged {{person.age}}</li>
+        </ol>
+
+        <h4>V-for with Template tag</h4>
+        <template v-for="(person, idx) in persons">
+            <h4>[{{idx + 1}}] {{person.name}}</h4>
+            is<span :style="{backgroundColor: person.color}">{{person.age}} years</span> old.
+            <div>
+                <h5>Looping through object properties | v-for="(value ,key, index) in object"</h5>
+                <div v-for="(value ,key, index) in person">{{index + 1}}) {{key}} is {{value}}. </div>
+            </div>
+        </template>
+
+        <h4>V-for for looping through a given number | Positive Whole numbers only</h4>
+        <div v-for="num in 10"> {{num}} </div>
+
+
+        <!-- message property With reverseMessage method -->
+        <p>{{ message }}</p>
+        <button v-on:click="reverseMessage">Reverse Message</button>
     </div>
 </body>
 <script>
     new Vue({
         el: '#app',
         data: {
-            show: false
+            show: false,
+            message: 'Hello Vue.js!',
+            todos: [
+                { text: 'Learn JavaScript' },
+                { text: 'Learn Vue' },
+                { text: 'Build something awesome' }
+            ],
+            ingredients: ['meat', 'fruit', 'cookies'],
+            persons: [
+                { name: 'Max', age: 27, color: 'red' },
+                { name: 'Shre', age: 25, color: 'blue' },
+                { name: 'Nidh', age: 27, color: 'pink' },
+            ]
         },
         methods: {
+            reverseMessage: function () {
+                this.message = this.message.split('').reverse().join('')
+            }
         },
     })
 </script>

@@ -8,13 +8,13 @@
           <div class="form-group">
             <label for="email">Mail</label>
             <input v-model="userData.email" type="text" id="email" class="form-control" />
-
-            <!-- Custom components can be built with "value" prop and "input" event emit -->
-            <!-- v-model can be used with these components for binding -->
-            <!-- <input :value="userData.email"
-            @input="userDate.email = $event.target.value"
-            type="text" id="email" class="form-control" /> -->
           </div>
+
+          <!-- Custom components can be built with "value" prop and "input" event emit -->
+          <!-- v-model can be used with these components for binding -->
+          <!-- <input :value="userData.email"
+          @input="userDate.email = $event.target.value"
+          type="text" id="email" class="form-control" /> -->
           <div class="form-group">
             <label for="password">Password</label>
             <input

@@ -9,8 +9,8 @@
             <label for="email">Mail</label>
             <input v-model="userData.email" type="text" id="email" class="form-control" />
 
-            <!-- Custom components can be build with "value" prop and "input" event emit -->
-            <!-- v-model can be used with thses components for binding -->
+            <!-- Custom components can be built with "value" prop and "input" event emit -->
+            <!-- v-model can be used with these components for binding -->
             <!-- <input :value="userData.email"
             @input="userDate.email = $event.target.value"
             type="text" id="email" class="form-control" /> -->

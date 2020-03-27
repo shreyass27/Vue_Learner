@@ -3,15 +3,13 @@
 <script>
 import Header from "./components/Shared/Header";
 import Footer from "./components/Shared/Footer";
-import Server from "./components/Server/Server";
-import ServerDetails from "./components/Server/ServerDetails";
+import Servers from "./components/Server/Servers";
 
 export default {
   name: "App",
   components: {
     Header,
-    Server,
-    ServerDetails,
+    Servers,
     Footer
   }
 };
@@ -21,10 +19,7 @@ export default {
   <div class="container">
     <Header />
     <hr />
-    <div class="row">
-      <Server />
-      <ServerDetails />
-    </div>
+    <Servers />
     <hr />
     <Footer />
   </div>
